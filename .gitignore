@@ -1,0 +1,9 @@
+# Bỏ qua các thư mục cấu hình của IDE
+.vscode/
+.idea/
+
+# Bỏ qua các file log hệ thống
+*.log
+
+# (Tùy chọn) Bỏ qua file db.php nếu mỗi người dùng mật khẩu MySQL khác nhau
+# config/db.php

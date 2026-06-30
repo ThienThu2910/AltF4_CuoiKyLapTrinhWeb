@@ -7,3 +7,4 @@
 
 # (Tùy chọn) Bỏ qua file db.php nếu mỗi người dùng mật khẩu MySQL khác nhau
 # config/db.php
+.vs/

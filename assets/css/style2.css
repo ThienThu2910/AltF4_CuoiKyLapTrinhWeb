@@ -1,0 +1,326 @@
+/* assets/css/style.css */
+
+/* Định hình chuyển động mượt mà và font chữ sang trọng */
+body {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    font-family: 'Playfair Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Biến màu sắc chủ đạo theo yêu cầu: Vàng Gold, Đen, Trắng */
+:root {
+    --gold-primary: #D4AF37;   /* Màu vàng gold sang trọng */
+    --gold-hover: #AA7C11;     /* Màu vàng tối hơn khi hover */
+}
+
+/* Định cấu hình giao diện SÁNG (Light Mode): Trắng làm chủ đạo, chữ Đen, điểm xuyết Vàng */
+[data-bs-theme="light"] {
+    --bs-body-bg: #FFFFFF;
+    --bs-body-color: #111111;
+    --bs-tertiary-bg: #F8F9FA;
+    --border-color-custom: #E5E5E5;
+}
+
+/* Định cấu hình giao diện TỐI (Dark Mode): Đen làm chủ đạo, chữ Trắng, điểm xuyết Vàng */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #0B0B0B;     /* Đen tuyền huyền bí */
+    --bs-body-color: #F5F5F5;  /* Trắng thạch anh */
+    --bs-tertiary-bg: #121212; /* Đen xám cho navbar/footer */
+    --border-color-custom: #222222;
+}
+
+/* Tùy chỉnh màu chữ Gold cho thương hiệu và các nút nhấn */
+.text-gold {
+    color: var(--gold-primary) !important;
+}
+.btn-gold {
+    background-color: var(--gold-primary);
+    color: #000000 !important;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    background-color: var(--gold-hover);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+.btn-outline-gold {
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+.btn-outline-gold:hover {
+    background-color: var(--gold-primary);
+    color: #000000 !important;
+}
+
+/* Tùy chỉnh Hero Banner phong cách thượng lưu */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200') no-repeat center center;
+    background-size: cover;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-bottom: 2px solid var(--gold-primary);
+}
+
+/* Định dạng cấu trúc Card danh sách phòng */
+.card {
+    overflow: hidden;
+    background-color: var(--bs-tertiary-bg);
+    border: 1px solid var(--border-color-custom);
+    border-radius: 8px;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-primary);
+}
+[data-bs-theme="light"] .card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+[data-bs-theme="dark"] .card:hover {
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+}
+
+/* Hiệu ứng hình ảnh phòng phóng to nhẹ */
+.room-img {
+    height: 230px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.card:hover .room-img {
+    transform: scale(1.04);
+}
+
+.room-detail-img {
+    max-height: 480px;
+    object-fit: cover;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Huy hiệu trạng thái phòng phòng chống tràn màu */
+.badge-gold {
+    background-color: rgba(212, 175, 55, 0.15);
+    color: var(--gold-primary);
+    border: 1px solid var(--gold-primary);
+}
+/* Tùy chỉnh vùng chứa Slider của Banner */
+#heroBannerSlider {
+    height: 55vh;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 2px solid var(--gold-primary);
+}
+
+/* Định dạng ảnh nền của từng Slide */
+.slider-image {
+    height: 55vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Định vị phần chữ Caption nằm chính giữa Banner */
+.carousel-caption {
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+}
+
+/* Hiệu ứng chuyển động mượt mà cho chữ khi đổi slide */
+.slider-title {
+    animation: fadeInUp 0.8s ease backwards;
+    letter-spacing: 2px;
+}
+
+.slider-text {
+    animation: fadeInUp 0.8s ease backwards 0.2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tùy chỉnh màu sắc các nút chấm tròn nhỏ chỉ số trang sang màu vàng Gold */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--gold-primary);
+}
+/* ==========================================================================
+   THANH ĐIỀU HƯỚNG CỐ ĐỊNH (FIXED NAVBAR)
+   ========================================================================== */
+.navbar {
+    position: fixed; /* Giữ cố định thanh menu trên cùng màn hình */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050; /* Đảm bảo đè lên trên ảnh banner và nội dung phòng */
+    background-color: transparent; /* Ban đầu để trong suốt hoặc hòa vào ảnh nền */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0; /* Độ rộng ban đầu khi ở trên cùng */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng chuyển nền mượt mà */
+}
+
+/* HIỆU ỨNG KHI CUỘN XUỐNG SÂU: Tự động thêm class này nhờ JavaScript */
+.navbar.navbar-scrolled {
+    background-color: var(--bs-body-bg) !important; /* Tự động đổi sang màu trắng (Light) hoặc đen (Dark) tương ứng */
+    padding: 8px 0; /* Thu nhỏ thanh menu lại một chút cho thanh thoát */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Tạo bóng đổ nhẹ phía dưới giống mẫu */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Đảm bảo chữ trên menu luôn căn chuẩn */
+.navbar-brand {
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+}
+.nav-link.active {
+    color: var(--gold-primary) !important;
+}/* ==========================================================================
+   CSS ĐỘC LẬP ÉP BA CARD DỊCH VỤ BẰNG NHAU, KHÔNG TRÀN HÌNH
+   ========================================================================== */
+.hotel-amenity-card {
+    position: relative !important;
+    overflow: hidden !important;
+    background-color: #fff;
+}
+
+/* Cố định chiều cao vùng chứa ảnh */
+.hotel-img-container {
+    width: 100% !important;
+    height: 320px !important; /* Bạn có thể điều chỉnh chiều cao này tùy ý */
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+/* Ép ảnh vừa khít khung, không bị méo */
+.hotel-img-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.hotel-text-content {
+    padding: 1rem;
+    background: #fff;
+}
+
+.hotel-card-title {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 8px !important;
+}
+
+.hotel-card-desc {
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+/* ==========================================================================
+   HIỆU ỨNG HOVER DI CHUỘT CHO THẺ TIỆN ÍCH
+   ========================================================================== */
+
+/* Trạng thái mặc định của thẻ */
+.hotel-amenity-card {
+    position: relative !important;
+    overflow: hidden !important;
+    background-color: #fff;
+    border-radius: 12px !important; /* Bo góc nhẹ cho hiện đại */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important; /* Tạo độ mượt khi chuyển cảnh */
+}
+
+/* Khi di chuột vào thẻ: Thẻ nhấc lên và đổ bóng đậm hơn */
+.hotel-amenity-card:hover {
+    transform: translateY(-8px) !important; /* Nhấc thẻ lên 8px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12) !important; /* Đổ bóng mềm, sang trọng */
+    border-color: #dfb76c !important; /* Đổi viền sang màu vàng giống màu thương hiệu của bạn nếu muốn */
+}
+
+/* Cố định khung chứa ảnh và hỗ trợ hiệu ứng phóng ảnh */
+.hotel-img-container {
+    width: 100% !important;
+    height: 320px !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+/* Ảnh mặc định bên trong khung */
+.hotel-img-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.5s ease !important; /* Tạo độ mượt khi ảnh phóng to */
+}
+
+/* Khi di chuột vào thẻ: Ảnh tự động phóng to nhẹ 8% */
+.hotel-amenity-card:hover .hotel-img-container img {
+    transform: scale(1.08) !important;
+}
+/* Custom Style cho trang Tiện ích độc lập */
+.custom-page-card .hotel-img-container {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.custom-page-card:hover .hotel-img-container img {
+    transform: scale(1.06) !important;
+}
+
+.custom-page-card h3 {
+    color: #2b2b2b;
+    transition: color 0.3s ease;
+}
+
+.custom-page-card:hover h3 {
+    color: #dfb76c; /* Đổi tiêu đề sang màu vàng thương hiệu khi hover */
+}
+
+/* Thanh gạch ngang nhỏ dưới tiêu đề */
+.bg-gold {
+    background-color: #dfb76c !important;
+}
+/* Custom định dạng cho nút Back to Top */
+#btnBackToTop {
+    background-color: #dfb76c !important; /* Màu vàng thương hiệu của bạn */
+    border: none !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+#btnBackToTop:hover {
+    transform: translateY(-5px) !important; /* Nhấc nhẹ lên 5px khi di chuột */
+    background-color: #c99c4e !important; /* Vàng đậm hơn chút */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3) !important;
+}
+/* ==========================================================================
+   HIỆU ỨNG CUỘN ĐẾN ĐÂU HIỆN CHỮ ĐẾN ĐÓ (SCROLL ANIMATION)
+   ========================================================================== */
+
+/* Trạng thái ẩn ban đầu khi chưa cuộn tới */
+.scroll-reveal {
+    opacity: 0 !important;
+    transform: translateY(40px) !important; /* Hơi đẩy xuống 40px */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important; /* Độ mượt khi hiện */
+}
+
+/* Trạng thái khi bắt đầu hiện lên */
+.scroll-reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important; /* Trở về vị trí gốc */
+}

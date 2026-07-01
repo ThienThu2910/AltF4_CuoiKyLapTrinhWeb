@@ -158,3 +158,99 @@ body {
 .carousel-indicators [data-bs-target] {
     background-color: var(--gold-primary);
 }
+/* ==========================================================================
+   THANH ĐIỀU HƯỚNG CỐ ĐỊNH (FIXED NAVBAR)
+   ========================================================================== */
+.navbar {
+    position: fixed; /* Giữ cố định thanh menu trên cùng màn hình */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050; /* Đảm bảo đè lên trên ảnh banner và nội dung phòng */
+    background-color: transparent; /* Ban đầu để trong suốt hoặc hòa vào ảnh nền */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0; /* Độ rộng ban đầu khi ở trên cùng */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng chuyển nền mượt mà */
+}
+
+/* HIỆU ỨNG KHI CUỘN XUỐNG SÂU: Tự động thêm class này nhờ JavaScript */
+.navbar.navbar-scrolled {
+    background-color: var(--bs-body-bg) !important; /* Tự động đổi sang màu trắng (Light) hoặc đen (Dark) tương ứng */
+    padding: 8px 0; /* Thu nhỏ thanh menu lại một chút cho thanh thoát */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Tạo bóng đổ nhẹ phía dưới giống mẫu */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Đảm bảo chữ trên menu luôn căn chuẩn */
+.navbar-brand {
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+}
+.nav-link.active {
+    color: var(--gold-primary) !important;
+}
+/* ==========================================================================
+   FIX LỖI HIỂN THỊ KHỐI TIỆN ÍCH DỊCH VỤ 
+   ========================================================================== */
+.amenity-card {
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: var(--bs-body-bg);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.amenity-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ép ảnh hiển thị theo khung container cố định, không dùng position tuyệt đối gây đè ảnh */
+.amenity-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px; /* Điều chỉnh chiều cao ảnh đứng tại đây */
+    overflow: hidden;
+}
+
+.amenity-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp ảnh không bị méo, tự co giãn vừa khung */
+    display: block;
+}
+
+/* Nội dung chữ bên dưới */
+.amenity-content {
+    padding: 16px 12px;
+    background-color: inherit;
+}
+
+.amenity-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--bs-body-color);
+}
+
+.amenity-desc {
+    font-size: 0.8rem;
+    color: var(--bs-secondary-color);
+    line-height: 1.5;
+    margin-bottom: 0;
+    /* Cắt bớt chữ nếu quá dài quá 3 dòng */
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Tiêu đề chữ bên phải */
+.section-side-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--bs-body-color);
+}

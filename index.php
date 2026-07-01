@@ -334,6 +334,56 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
         }
     }
     ?>
+    <div class="container my-5 py-4">
+    <div class="row g-4 align-items-center">
+        
+        <div class="col-lg-9 col-md-12">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="amenity-card bg-body-tertiary shadow-sm">
+                        <div class="amenity-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600" alt="Nhà hàng">
+                        </div>
+                        <div class="amenity-content">
+                            <h5 class="amenity-title">Nhà hàng</h5>
+                            <p class="amenity-desc">Không chỉ ở lối kiến trúc, ẩm thực của nhà hàng cũng mang đậm nét truyền thống...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="amenity-card bg-body-tertiary shadow-sm">
+                        <div class="amenity-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Spa">
+                        </div>
+                        <div class="amenity-content">
+                            <h5 class="amenity-title">Spa</h5>
+                            <p class="amenity-desc">Lạc vào Spa Furama Resort sang trọng và quyến rũ để tận hưởng những phút giây...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="amenity-card bg-body-tertiary shadow-sm">
+                        <div class="amenity-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600" alt="Yoga">
+                        </div>
+                        <div class="amenity-content">
+                            <h5 class="amenity-title">Yoga</h5>
+                            <p class="amenity-desc">Khách nghỉ tại Furama Resort có thể tham gia lớp học Yoga của khách sạn để thư giãn...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-12 text-center text-lg-start ps-lg-4">
+            <h2 class="display-5 fw-normal text-lowercase section-side-title mb-1">tiện ích</h2>
+            <p class="text-muted text-uppercase tracking-wider small mb-0" style="font-size: 0.75rem;">Các tiện ích khách sạn</p>
+        </div>
+
+    </div>
+</div>
 
     <footer class="bg-body-tertiary text-body py-5 mt-5 border-top">
         <div class="container py-2">

@@ -35,3 +35,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================================================
+    // 1. XỬ LÝ CHỨC NĂNG ĐỔI GIAO DIỆN DARK MODE (ĐÃ CÓ SẴN)
+    // ==========================================================================
+    const modeToggleBtn = document.getElementById('darkModeToggle');
+    const modeIcon = document.getElementById('darkModeIcon');
+    const htmlElement = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-bs-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    if (modeToggleBtn) {
+        modeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+    }
+
+    function updateIcon(theme) {
+        if (!modeIcon) return;
+        if (theme === 'dark') {
+            modeIcon.className = 'bi bi-sun-fill fs-5 text-warning';
+        } else {
+            modeIcon.className = 'bi bi-moon-stars-fill fs-5';
+        }
+    }
+
+    // ==========================================================================
+    // 2. BỔ SUNG: XỬ LÝ NAVBAR DÍNH KHI CUỘN XUỐNG SÂU (STICKY/FIXED ON SCROLL)
+    // ==========================================================================
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        // Nếu cuộn chuột xuống sâu hơn 120px (qua khỏi phần đầu của banner chính)
+        if (window.scrollY > 120) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    });
+});

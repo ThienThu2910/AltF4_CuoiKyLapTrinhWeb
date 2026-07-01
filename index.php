@@ -1,4 +1,5 @@
 <?php
+
 // 1. KẾT NỐI CƠ SỞ DỮ LIỆU ĐỘNG (Sử dụng PDO theo yêu cầu của đồ án)
 require_once 'config/db.php';
 
@@ -10,7 +11,6 @@ require_once 'config/db.php';
 
 // Nhận tham số điều hướng trang (Mặc định khi truy cập là trang chủ 'trang-chu')
 $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
-
 ?>
 <!DOCTYPE html>
 <html lang="vi" data-bs-theme="light">
@@ -61,6 +61,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
         </div>
     </nav>
 
+
     <?php
     if ($page == 'trang-chu') {
 
@@ -70,6 +71,14 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
 
     ?>
         <div id="heroBannerSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+    <?php
+    if ($page == 'trang-chu') {
+        // =======================================================
+        // [GIAO DIỆN TRANG CHỦ] - HIỂN THỊ BANNER VÀ PHÒNG TIÊU BIỂU
+        // =======================================================
+    ?>
+        <<div id="heroBannerSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroBannerSlider" data-bs-slide-to="0" class="active" aria-current="true"></button>
                 <button type="button" data-bs-target="#heroBannerSlider" data-bs-slide-to="1"></button>
@@ -122,14 +131,18 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
             <div class="row g-4">
                 <?php
 
+
                 // Lấy tối đa 3 phòng bất kỳ đang ở trạng thái trống từ bảng 'phong'
 
 
+                // Thực hiện câu lệnh SQL lấy tối đa 3 phòng bất kỳ đang ở trạng thái trống
                 $stmt = $pdo->query("SELECT * FROM phong WHERE trang_thai = 'trong' LIMIT 3");
                 $phongs = $stmt->fetchAll();
 
                 if (count($phongs) > 0) {
                     foreach ($phongs as $row) {
+
+                        // Nếu trường hinh_anh trong DB trống (NULL), hệ thống tự dùng ảnh mặc định chất lượng cao
                         $img = !empty($row['hinh_anh']) ? $row['hinh_anh'] : 'https://images.unsplash.com/photo-1611892440504-42a792e24d02?q=80&w=600';
                 ?>
                         <div class="col-md-4">
@@ -165,11 +178,16 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
         // [GIAO DIỆN DANH SÁCH PHÒNG] - CHỨC NĂNG TÌM KIẾM + BỘ LỌC ĐỘNG
         // =======================================================
 
-
+        // =======================================================
+        // [GIAO DIỆN DANH SÁCH PHÒNG] - CHỨC NĂNG TÌM KIẾM + BỘ LỌC ĐỘNG
+        // =======================================================
+        
+        // Thu thập dữ liệu từ thanh tìm kiếm & bộ lọc lọc dữ liệu nâng cao
         $search = isset($_GET['search']) ? trim($_GET['search']) : '';
         $filter_loai = isset($_GET['loai_phong']) ? trim($_GET['loai_phong']) : '';
         $filter_gia = isset($_GET['gia_phong']) ? trim($_GET['gia_phong']) : '';
 
+        // Xây dựng câu truy vấn động an toàn bằng Prepare Statement
         $sql = "SELECT * FROM phong WHERE 1=1";
         $params = [];
 
@@ -196,6 +214,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
         $stmt->execute($params);
         $phongs = $stmt->fetchAll();
 
+        // Lấy tự động các loại phòng hiện tại đang có trong CSDL để điền vào menu thả xuống của bộ lọc
         $loai_stmt = $pdo->query("SELECT DISTINCT loai_phong FROM phong");
         $cac_loai_phong = $loai_stmt->fetchAll(PDO::FETCH_COLUMN);
     ?>
@@ -282,6 +301,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
 
         $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+        // =======================================================
+        // [GIAO DIỆN CHI TIẾT PHÒNG] - THÔNG TIN CHI TIẾT DỮ LIỆU THỰC
+        // =======================================================
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+        // Truy vấn dữ liệu từ MySQL dựa trên ID phòng truyền vào URL
         $stmt = $pdo->prepare("SELECT * FROM phong WHERE id = ?");
         $stmt->execute([$id]);
         $room = $stmt->fetch();
@@ -375,6 +400,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   
     <script src="assets/js/main.js"></script>
 </body>
 </html>

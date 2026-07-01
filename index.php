@@ -37,6 +37,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'danh-sach' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=danh-sach">Danh sách phòng</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="phong/list.php">
+                            <i class="bi bi-door-open-fill text-gold me-1"></i> Quản lý phòng
+                        </a>
                  
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'tien-ich' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=tien-ich">Tiện ích</a>
@@ -392,6 +396,31 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                             <img src="<?= htmlspecialchars($img) ?>" class="img-fluid rounded room-detail-img w-100" alt="Chi tiết phòng ALTF4">
                         </div>
                         
+                        <h2 class="text-gold fw-bold mb-4"><?= number_format($room['gia_phong'], 0, ',', '.') ?> đ <small class="text-muted fs-6 fw-light">/ đêm lưu trú</small></h2>
+                        
+                        <h5 class="fw-bold text-uppercase small text-muted mb-3" style="letter-spacing: 0.5px;">Mô tả tiện ích phòng</h5>
+                        <p class="text-muted" style="line-height: 1.7;">Không gian phòng nghỉ tinh tế được tối ưu hóa cho sự thoải mái của bạn. Trang bị hệ thống điều hòa thông minh, kết nối mạng không dây tốc độ cao, tủ két an toàn bảo mật, minibar và nội thất cao cấp mang chuẩn phong cách thượng lưu của hệ thống khách sạn ALTF4.</p>
+                        
+                        <h5 class="fw-bold text-uppercase small text-muted mt-4 mb-3" style="letter-spacing: 0.5px;">Thông số kỹ thuật phòng</h5>
+                        <table class="table table-sm text-muted mt-2 border-top border-bottom">
+                            <tr>
+                                <td class="py-2 border-0"><i class="bi bi-door-open text-gold me-2"></i> Số hiệu phòng:</td>
+                                <td class="py-2 text-end text-body fw-bold border-0"><?= htmlspecialchars($room['so_phong']) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 border-0"><i class="bi bi-tags text-gold me-2"></i> Phân cấp hạng phòng:</td>
+                                <td class="py-2 text-end text-body fw-bold border-0"><?= htmlspecialchars($room['loai_phong']) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 border-0"><i class="bi bi-cash-stack text-gold me-2"></i> Giá niêm yết:</td>
+                                <td class="py-2 text-end text-gold fw-bold border-0"><?= number_format($room['gia_phong'], 0, ',', '.') ?> đ</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        <a href="mailto:info@altf4hotel.com?subject=Yêu cầu đặt phòng số <?= $room['so_phong'] ?>" class="btn btn-gold btn-lg w-100 py-3 text-uppercase fs-6 <?= $room['trang_thai'] != 'trong' ? 'disabled btn-secondary text-white-50' : '' ?>">
+                            <i class="bi bi-calendar2-check-fill me-2"></i> <?= $room['trang_thai'] == 'trong' ? 'Liên Hệ Đặt Phòng Trực Tuyến' : 'Phòng Hiện Đang Được Thuê' ?>
+                        </a>
                         <div class="col-md-5 d-flex flex-column justify-content-between">
                             <div>
                                 <h1 class="fw-bold text-body mb-2"><?= htmlspecialchars($room['loai_phong']) ?> Luxury Suite</h1>

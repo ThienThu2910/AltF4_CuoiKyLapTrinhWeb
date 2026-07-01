@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':username' => $username]);
         $user = $stmt->fetch();
+        
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['admin_logged_in'] = true;

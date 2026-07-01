@@ -4,9 +4,16 @@ require_once 'config/db.php';
 
 // Nhận tham số điều hướng trang (Mặc định khi mới truy cập là trang chủ 'trang-chu')
 $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu'; 
+
+// 1. KẾT NỐI CƠ SỞ DỮ LIỆU ĐỘNG (Sử dụng PDO theo yêu cầu)
+require_once 'config/db.php';
+
+// Nhận tham số điều hướng trang (Mặc định khi truy cập là trang chủ 'trang-chu')
+$page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
+
 ?>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,9 +63,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
 
     <?php
     if ($page == 'trang-chu') {
+
         // =======================================================
         // [GIAO DIỆN TRANG CHỦ] - HIỂN THỊ BANNER VÀ PHÒNG TIÊU BIỂU
         // =======================================================
+
     ?>
         <div id="heroBannerSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-indicators">
@@ -112,7 +121,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
             
             <div class="row g-4">
                 <?php
+
                 // Lấy tối đa 3 phòng bất kỳ đang ở trạng thái trống từ bảng 'phong'
+
+
                 $stmt = $pdo->query("SELECT * FROM phong WHERE trang_thai = 'trong' LIMIT 3");
                 $phongs = $stmt->fetchAll();
 
@@ -148,9 +160,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
 
     <?php 
     } elseif ($page == 'danh-sach') {
+
         // =======================================================
         // [GIAO DIỆN DANH SÁCH PHÒNG] - CHỨC NĂNG TÌM KIẾM + BỘ LỌC ĐỘNG
         // =======================================================
+
+
         $search = isset($_GET['search']) ? trim($_GET['search']) : '';
         $filter_loai = isset($_GET['loai_phong']) ? trim($_GET['loai_phong']) : '';
         $filter_gia = isset($_GET['gia_phong']) ? trim($_GET['gia_phong']) : '';
@@ -260,9 +275,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
 
     <?php
     } elseif ($page == 'chi-tiet') {
+
         // =======================================================
         // [GIAO DIỆN CHI TIẾT PHÒNG] - THÔNG TIN CHI TIẾT DỮ LIỆU THỰC
         // =======================================================
+
         $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
         $stmt = $pdo->prepare("SELECT * FROM phong WHERE id = ?");

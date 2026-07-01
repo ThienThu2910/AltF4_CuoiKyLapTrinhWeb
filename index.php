@@ -37,6 +37,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'danh-sach' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=danh-sach">Danh sách phòng</a>
                     </li>
+                 
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'tien-ich' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=tien-ich">Tiện ích</a>
                     </li>

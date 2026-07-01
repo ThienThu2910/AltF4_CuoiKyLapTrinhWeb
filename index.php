@@ -37,6 +37,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'danh-sach' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=danh-sach">Danh sách phòng</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="phong/list.php">
+                            <i class="bi bi-door-open-fill text-gold me-1"></i> Quản lý phòng
+                        </a>
+                    </li>
                 </ul>
 
                 <form class="d-flex me-3" role="search" action="index.php" method="GET">
@@ -313,7 +318,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                             </tr>
                         </table>
                     </div>
-
                     <div class="mt-4">
                         <a href="mailto:info@altf4hotel.com?subject=Yêu cầu đặt phòng số <?= $room['so_phong'] ?>" class="btn btn-gold btn-lg w-100 py-3 text-uppercase fs-6 <?= $room['trang_thai'] != 'trong' ? 'disabled btn-secondary text-white-50' : '' ?>">
                             <i class="bi bi-calendar2-check-fill me-2"></i> <?= $room['trang_thai'] == 'trong' ? 'Liên Hệ Đặt Phòng Trực Tuyến' : 'Phòng Hiện Đang Được Thuê' ?>

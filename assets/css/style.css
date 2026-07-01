@@ -1,0 +1,160 @@
+/* assets/css/style.css */
+
+/* Định hình chuyển động mượt mà và font chữ sang trọng */
+body {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    font-family: 'Playfair Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Biến màu sắc chủ đạo theo yêu cầu: Vàng Gold, Đen, Trắng */
+:root {
+    --gold-primary: #D4AF37;   /* Màu vàng gold sang trọng */
+    --gold-hover: #AA7C11;     /* Màu vàng tối hơn khi hover */
+}
+
+/* Định cấu hình giao diện SÁNG (Light Mode): Trắng làm chủ đạo, chữ Đen, điểm xuyết Vàng */
+[data-bs-theme="light"] {
+    --bs-body-bg: #FFFFFF;
+    --bs-body-color: #111111;
+    --bs-tertiary-bg: #F8F9FA;
+    --border-color-custom: #E5E5E5;
+}
+
+/* Định cấu hình giao diện TỐI (Dark Mode): Đen làm chủ đạo, chữ Trắng, điểm xuyết Vàng */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #0B0B0B;     /* Đen tuyền huyền bí */
+    --bs-body-color: #F5F5F5;  /* Trắng thạch anh */
+    --bs-tertiary-bg: #121212; /* Đen xám cho navbar/footer */
+    --border-color-custom: #222222;
+}
+
+/* Tùy chỉnh màu chữ Gold cho thương hiệu và các nút nhấn */
+.text-gold {
+    color: var(--gold-primary) !important;
+}
+.btn-gold {
+    background-color: var(--gold-primary);
+    color: #000000 !important;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    background-color: var(--gold-hover);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+.btn-outline-gold {
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+.btn-outline-gold:hover {
+    background-color: var(--gold-primary);
+    color: #000000 !important;
+}
+
+/* Tùy chỉnh Hero Banner phong cách thượng lưu */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200') no-repeat center center;
+    background-size: cover;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-bottom: 2px solid var(--gold-primary);
+}
+
+/* Định dạng cấu trúc Card danh sách phòng */
+.card {
+    overflow: hidden;
+    background-color: var(--bs-tertiary-bg);
+    border: 1px solid var(--border-color-custom);
+    border-radius: 8px;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-primary);
+}
+[data-bs-theme="light"] .card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+[data-bs-theme="dark"] .card:hover {
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+}
+
+/* Hiệu ứng hình ảnh phòng phóng to nhẹ */
+.room-img {
+    height: 230px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.card:hover .room-img {
+    transform: scale(1.04);
+}
+
+.room-detail-img {
+    max-height: 480px;
+    object-fit: cover;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Huy hiệu trạng thái phòng phòng chống tràn màu */
+.badge-gold {
+    background-color: rgba(212, 175, 55, 0.15);
+    color: var(--gold-primary);
+    border: 1px solid var(--gold-primary);
+}
+/* Tùy chỉnh vùng chứa Slider của Banner */
+#heroBannerSlider {
+    height: 55vh;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 2px solid var(--gold-primary);
+}
+
+/* Định dạng ảnh nền của từng Slide */
+.slider-image {
+    height: 55vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Định vị phần chữ Caption nằm chính giữa Banner */
+.carousel-caption {
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+}
+
+/* Hiệu ứng chuyển động mượt mà cho chữ khi đổi slide */
+.slider-title {
+    animation: fadeInUp 0.8s ease backwards;
+    letter-spacing: 2px;
+}
+
+.slider-text {
+    animation: fadeInUp 0.8s ease backwards 0.2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tùy chỉnh màu sắc các nút chấm tròn nhỏ chỉ số trang sang màu vàng Gold */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--gold-primary);
+}

@@ -37,8 +37,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'trang-chu';
                     <li class="nav-item">
                         <a class="nav-link <?= $page == 'danh-sach' ? 'active fw-bold text-gold' : '' ?>" href="index.php?page=danh-sach">Danh sách phòng</a>
                     </li>
-                </ul>
-
+                 
                 <form class="d-flex me-3" role="search" action="index.php" method="GET">
                     <input type="hidden" name="page" value="danh-sach">
                     <input class="form-control me-2 form-control-sm bg-transparent border-secondary" type="search" name="search" placeholder="Tìm số phòng, loại phòng..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" aria-label="Search">

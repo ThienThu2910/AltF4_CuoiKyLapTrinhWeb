@@ -47,7 +47,7 @@ CREATE TABLE `khach_hang` (
   `id` int(11) NOT NULL,
   `ho_ten` varchar(100) NOT NULL,
   `cccd` varchar(20) NOT NULL,
-  `so_dien_thoại` varchar(15) NOT NULL,
+  `so_dien_thoai` varchar(15) NOT NULL,
   `email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
